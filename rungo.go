@@ -10,7 +10,19 @@ import (
 
 func main() {
 	goFiles := make([]string, 0)
-	goFiles = append(goFiles, "run")
+
+	if len(os.Args) > 1 {
+		switch os.Args[1] {
+		case "-b":
+			goFiles = append(goFiles, "build")
+		case "-help":
+			fmt.Println("-b - Build go files")
+			fmt.Scanln()
+			return
+		}
+	} else {
+		goFiles = append(goFiles, "run")
+	}
 
 	allFiles, err := os.ReadDir(".")
 	if err != nil {
