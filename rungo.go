@@ -33,7 +33,7 @@ func main() {
 
 	for f := range slices.Values(allFiles) {
 		splitFName := strings.Split(f.Name(), ".")
-		if !f.IsDir() && splitFName[len(splitFName)-1] == "go" {
+		if !f.IsDir() && splitFName[len(splitFName)-1] == "go" && !strings.HasSuffix(splitFName[0], "_test") {
 			goFiles = append(goFiles, f.Name())
 		}
 	}
